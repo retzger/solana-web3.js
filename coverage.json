@@ -1,0 +1,116 @@
+{
+  "coverage": "95.97%",
+  "expectCount": 199,
+  "actualCount": 191,
+  "files": {
+    "src/account.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/bpf-loader.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/budget-program.js": {
+      "expectCount": 12,
+      "actualCount": 12,
+      "undocumentLines": []
+    },
+    "src/connection.js": {
+      "expectCount": 86,
+      "actualCount": 85,
+      "undocumentLines": [
+        427
+      ]
+    },
+    "src/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        23
+      ]
+    },
+    "src/layout.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/loader.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/publickey.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
+    "src/system-program.js": {
+      "expectCount": 15,
+      "actualCount": 15,
+      "undocumentLines": []
+    },
+    "src/sysvar-rent.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/timing.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/transaction.js": {
+      "expectCount": 27,
+      "actualCount": 25,
+      "undocumentLines": [
+        35,
+        36
+      ]
+    },
+    "src/util/send-and-confirm-raw-transaction.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/send-and-confirm-transaction.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/util/shortvec-encoding.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/util/sleep.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/testnet.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/validator-info.js": {
+      "expectCount": 7,
+      "actualCount": 5,
+      "undocumentLines": [
+        9,
+        37
+      ]
+    },
+    "src/vote-account.js": {
+      "expectCount": 14,
+      "actualCount": 13,
+      "undocumentLines": [
+        7
+      ]
+    }
+  }
+}

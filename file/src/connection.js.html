@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/connection.js | Solana Javascript API</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<link rel="stylesheet" href="./inject/css/0-theme.css"><meta name="description" content="Solana Javascript API"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Solana Javascript API"><meta property="twitter:description" content="Solana Javascript API"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/solana-labs/solana-web3.js"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/account.js~Account.html">Account</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/bpf-loader.js~BpfLoader.html">BpfLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/budget-program.js~BudgetProgram.html">BudgetProgram</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/connection.js~Connection.html">Connection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loader.js~Loader.html">Loader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/system-program.js~SystemInstruction.html">SystemInstruction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/system-program.js~SystemProgram.html">SystemProgram</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/transaction.js~Transaction.html">Transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/transaction.js~TransactionInstruction.html">TransactionInstruction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/validator-info.js~ValidatorInfo.html">ValidatorInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/vote-account.js~VoteAccount.html">VoteAccount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAlloc">getAlloc</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publicKey">publicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rustString">rustString</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uint64">uint64</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GetConfirmedBlockRpcResult">GetConfirmedBlockRpcResult</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SOL_LAMPORTS">SOL_LAMPORTS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSVAR_RENT_PUBKEY">SYSVAR_RENT_PUBKEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PACKET_DATA_SIZE">PACKET_DATA_SIZE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VALIDATOR_INFO_KEY">VALIDATOR_INFO_KEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VOTE_ACCOUNT_KEY">VOTE_ACCOUNT_KEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Blockhhash">Blockhhash</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-BudgetCondition">BudgetCondition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Payment">Payment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SignatureCondition">SignatureCondition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TimestampCondition">TimestampCondition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AccountInfo">AccountInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Commitment">Commitment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ConfirmedBlock">ConfirmedBlock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ContactInfo">ContactInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-EpochInfo">EpochInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-EpochSchedule">EpochSchedule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Inflation">Inflation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-KeyedAccountInfo">KeyedAccountInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SignatureSuccess">SignatureSuccess</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionError">TransactionError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Version">Version</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-VoteAccountInfo">VoteAccountInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-VoteAccountStatus">VoteAccountStatus</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-FeeCalculator">FeeCalculator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SystemInstructionType">SystemInstructionType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionCtorFields">TransactionCtorFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionInstructionCtorFields">TransactionInstructionCtorFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionSignature">TransactionSignature</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Info">Info</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#util">util</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendAndConfirmRawTransaction">sendAndConfirmRawTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendAndConfirmRecentTransaction">sendAndConfirmRecentTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendAndConfirmTransaction">sendAndConfirmTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decodeLength">decodeLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-encodeLength">encodeLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sleep">sleep</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-testnetChannelEndpoint">testnetChannelEndpoint</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/connection.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// @flow
+
+import assert from &apos;assert&apos;;
+import {parse as urlParse, format as urlFormat} from &apos;url&apos;;
+import fetch from &apos;node-fetch&apos;;
+import jayson from &apos;jayson/lib/client/browser&apos;;
+import {struct} from &apos;superstruct&apos;;
+import {Client as RpcWebSocketClient} from &apos;rpc-websockets&apos;;
+
+import {DEFAULT_TICKS_PER_SLOT, NUM_TICKS_PER_SECOND} from &apos;./timing&apos;;
+import {PublicKey} from &apos;./publickey&apos;;
+import {Transaction} from &apos;./transaction&apos;;
+import {sleep} from &apos;./util/sleep&apos;;
+import type {Blockhash} from &apos;./blockhash&apos;;
+import type {FeeCalculator} from &apos;./fee-calculator&apos;;
+import type {Account} from &apos;./account&apos;;
+import type {TransactionSignature} from &apos;./transaction&apos;;
+
+type RpcRequest = (methodName: string, args: Array&lt;any&gt;) =&gt; any;
+
+type RpcResponseAndContext&lt;T&gt; = {
+  context: {
+    slot: number,
+  },
+  value: T,
+};
+
+/**
+ * @private
+ */
+function jsonRpcResultAndContext(resultDescription: any) {
+  return struct.union([
+    // those same methods return results with context in v0.21+ servers
+    jsonRpcResult({
+      context: struct({
+        slot: &apos;number&apos;,
+      }),
+      value: resultDescription,
+    }),
+    // selected methods return &quot;bare&quot; results in pre-v0.21 servers
+    jsonRpcResult(resultDescription),
+  ]);
+}
+
+/**
+ * @private
+ */
+function jsonRpcResult(resultDescription: any) {
+  const jsonRpcVersion = struct.literal(&apos;2.0&apos;);
+  return struct.union([
+    struct({
+      jsonrpc: jsonRpcVersion,
+      id: &apos;string&apos;,
+      error: &apos;any&apos;,
+    }),
+    struct({
+      jsonrpc: jsonRpcVersion,
+      id: &apos;string&apos;,
+      error: &apos;null?&apos;,
+      result: resultDescription,
+    }),
+  ]);
+}
+
+/**
+ * The level of commitment desired when querying state
+ *   &apos;max&apos;:    Query the most recent block which has reached max voter lockout
+ *   &apos;recent&apos;: Query the most recent block
+ *
+ * @typedef {&apos;max&apos; | &apos;recent&apos;} Commitment
+ */
+export type Commitment = &apos;max&apos; | &apos;recent&apos;;
+
+/**
+ * Information describing a cluster node
+ *
+ * @typedef {Object} ContactInfo
+ * @property {string} pubkey Identity public key of the node
+ * @property {string} gossip Gossip network address for the node
+ * @property {string} tpu TPU network address for the node (null if not available)
+ * @property {string|null} rpc JSON RPC network address for the node (null if not available)
+ */
+type ContactInfo = {
+  pubkey: string,
+  gossip: string,
+  tpu: string | null,
+  rpc: string | null,
+};
+
+/**
+ * Information describing a vote account
+ *
+ * @typedef {Object} VoteAccountInfo
+ * @property {string} votePubkey Public key of the vote account
+ * @property {string} nodePubkey Identity public key of the node voting with this account
+ * @property {number} activatedStake The stake, in lamports, delegated to this vote account and activated
+ * @property {boolean} epochVoteAccount Whether the vote account is staked for this epoch
+ * @property {Array&lt;Array&lt;number&gt;&gt;} epochCredits Recent epoch voting credit history for this voter
+ * @property {number} commission A percentage (0-100) of rewards payout owed to the voter
+ * @property {number} lastVote Most recent slot voted on by this vote account
+ */
+type VoteAccountInfo = {
+  votePubkey: string,
+  nodePubkey: string,
+  activatedStake: number,
+  epochVoteAccount: boolean,
+  epochCredits: Array&lt;[number, number, number]&gt;,
+  commission: number,
+  lastVote: number,
+};
+
+/**
+ * A collection of cluster vote accounts
+ *
+ * @typedef {Object} VoteAccountStatus
+ * @property {Array&lt;VoteAccountInfo&gt;} current Active vote accounts
+ * @property {Array&lt;VoteAccountInfo&gt;} delinquent Inactive vote accounts
+ */
+type VoteAccountStatus = {
+  current: Array&lt;VoteAccountInfo&gt;,
+  delinquent: Array&lt;VoteAccountInfo&gt;,
+};
+
+/**
+ * Network Inflation parameters
+ * (see https://docs.solana.com/book/v/master/implemented-proposals/ed_overview)
+ *
+ * @typedef {Object} Inflation
+ * @property {number} foundation
+ * @property {number} foundation_term
+ * @property {number} initial
+ * @property {number} storage
+ * @property {number} taper
+ * @property {number} terminal
+ */
+const GetInflationResult = struct({
+  foundation: &apos;number&apos;,
+  foundation_term: &apos;number&apos;,
+  initial: &apos;number&apos;,
+  storage: &apos;number&apos;,
+  taper: &apos;number&apos;,
+  terminal: &apos;number&apos;,
+});
+
+/**
+ * EpochInfo parameters
+ * (see https://docs.solana.com/book/v/master/terminology#epoch)
+ *
+ * @typedef {Object} EpochInfo
+ * @property {number} epoch
+ * @property {number} slotIndex
+ * @property {number} slotsInEpoch
+ * @property {number} absoluteSlot
+ */
+const GetEpochInfoResult = struct({
+  epoch: &apos;number&apos;,
+  slotIndex: &apos;number&apos;,
+  slotsInEpoch: &apos;number&apos;,
+  absoluteSlot: &apos;number&apos;,
+});
+
+/**
+ * EpochSchedule parameters
+ * (see https://docs.solana.com/book/v/master/terminology#epoch)
+ *
+ * @typedef {Object} EpochSchedule
+ * @property {number} slots_per_epoch
+ * @property {number} leader_schedule_slot_offset
+ * @property {boolean} warmup
+ * @property {number} first_normal_epoch
+ * @property {number} first_normal_slot
+ */
+const GetEpochScheduleResult = struct({
+  slots_per_epoch: &apos;number&apos;,
+  leader_schedule_slot_offset: &apos;number&apos;,
+  warmup: &apos;boolean&apos;,
+  first_normal_epoch: &apos;number&apos;,
+  first_normal_slot: &apos;number&apos;,
+});
+
+/**
+ * Version info for a node
+ *
+ * @typedef {Object} Version
+ * @property {string} solana-core Version of solana-core
+ */
+const Version = struct({
+  &apos;solana-core&apos;: &apos;string&apos;,
+});
+
+/**
+ * A ConfirmedBlock on the ledger
+ *
+ * @typedef {Object} ConfirmedBlock
+ * @property {Blockhash} blockhash Blockhash of this block
+ * @property {Blockhash} previousBlockhash Blockhash of this block&apos;s parent
+ * @property {number} parentSlot Slot index of this block&apos;s parent
+ * @property {Array&lt;Array&lt;object&gt;&gt;} transactions Vector of transactions paired with statuses
+ */
+type ConfirmedBlock = {
+  blockhash: Blockhash,
+  previousBlockhash: Blockhash,
+  parentSlot: number,
+  transactions: Array&lt;[Transaction, GetSignatureStatusRpcResult]&gt;,
+};
+
+function createRpcRequest(url): RpcRequest {
+  const server = jayson(async (request, callback) =&gt; {
+    const options = {
+      method: &apos;POST&apos;,
+      body: request,
+      headers: {
+        &apos;Content-Type&apos;: &apos;application/json&apos;,
+      },
+    };
+
+    try {
+      const res = await fetch(url, options);
+      const text = await res.text();
+      callback(null, text);
+    } catch (err) {
+      callback(err);
+    }
+  });
+
+  return (method, args) =&gt; {
+    return new Promise((resolve, reject) =&gt; {
+      server.request(method, args, (err, response) =&gt; {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(response);
+      });
+    });
+  };
+}
+
+/**
+ * Expected JSON RPC response for the &quot;getInflation&quot; message
+ */
+const GetInflationRpcResult = struct({
+  jsonrpc: struct.literal(&apos;2.0&apos;),
+  id: &apos;string&apos;,
+  error: &apos;any?&apos;,
+  result: GetInflationResult,
+});
+
+/**
+ * Expected JSON RPC response for the &quot;getEpochInfo&quot; message
+ */
+const GetEpochInfoRpcResult = struct({
+  jsonrpc: struct.literal(&apos;2.0&apos;),
+  id: &apos;string&apos;,
+  error: &apos;any?&apos;,
+  result: GetEpochInfoResult,
+});
+
+/**
+ * Expected JSON RPC response for the &quot;getEpochSchedule&quot; message
+ */
+const GetEpochScheduleRpcResult = struct({
+  jsonrpc: struct.literal(&apos;2.0&apos;),
+  id: &apos;string&apos;,
+  error: &apos;any?&apos;,
+  result: GetEpochScheduleResult,
+});
+
+/**
+ * Expected JSON RPC response for the &quot;getBalance&quot; message
+ */
+const GetBalanceAndContextRpcResult = jsonRpcResultAndContext(&apos;number?&apos;);
+
+/**
+ * Expected JSON RPC response for the &quot;getVersion&quot; message
+ */
+const GetVersionRpcResult = struct({
+  jsonrpc: struct.literal(&apos;2.0&apos;),
+  id: &apos;string&apos;,
+  error: &apos;any?&apos;,
+  result: Version,
+});
+
+/**
+ * @private
+ */
+const AccountInfoResult = struct({
+  executable: &apos;boolean&apos;,
+  owner: &apos;array&apos;,
+  lamports: &apos;number&apos;,
+  data: &apos;array&apos;,
+  rent_epoch: &apos;number?&apos;,
+});
+
+/**
+ * Expected JSON RPC response for the &quot;getAccountInfo&quot; message
+ */
+const GetAccountInfoAndContextRpcResult = jsonRpcResultAndContext(
+  struct.union([&apos;null&apos;, AccountInfoResult]),
+);
+
+/***
+ * Expected JSON RPC response for the &quot;accountNotification&quot; message
+ */
+const AccountNotificationResult = struct({
+  subscription: &apos;number&apos;,
+  result: AccountInfoResult,
+});
+
+/**
+ * @private
+ */
+const ProgramAccountInfoResult = struct([&apos;string&apos;, AccountInfoResult]);
+
+/***
+ * Expected JSON RPC response for the &quot;programNotification&quot; message
+ */
+const ProgramAccountNotificationResult = struct({
+  subscription: &apos;number&apos;,
+  result: ProgramAccountInfoResult,
+});
+
+/**
+ * @private
+ */
+const SlotInfo = struct({
+  parent: &apos;number&apos;,
+  slot: &apos;number&apos;,
+  root: &apos;number&apos;,
+});
+
+/***
+ * Expected JSON RPC response for the &quot;slotNotification&quot; message
+ */
+const SlotNotificationResult = struct({
+  subscription: &apos;number&apos;,
+  result: SlotInfo,
+});
+
+/**
+ * Expected JSON RPC response for the &quot;getProgramAccounts&quot; message
+ */
+const GetProgramAccountsRpcResult = jsonRpcResult(
+  struct.list([ProgramAccountInfoResult]),
+);
+
+/**
+ * Expected JSON RPC response for the &quot;confirmTransaction&quot; message
+ */
+const ConfirmTransactionAndContextRpcResult = jsonRpcResultAndContext(
+  &apos;boolean&apos;,
+);
+
+/**
+ * Expected JSON RPC response for the &quot;getSlot&quot; message
+ */
+const GetSlot = jsonRpcResult(&apos;number&apos;);
+
+/**
+ * Expected JSON RPC response for the &quot;getSlotLeader&quot; message
+ */
+const GetSlotLeader = jsonRpcResult(&apos;string&apos;);
+
+/**
+ * Expected JSON RPC response for the &quot;getClusterNodes&quot; message
+ */
+const GetClusterNodes = jsonRpcResult(
+  struct.list([
+    struct({
+      pubkey: &apos;string&apos;,
+      gossip: &apos;string&apos;,
+      tpu: struct.union([&apos;null&apos;, &apos;string&apos;]),
+      rpc: struct.union([&apos;null&apos;, &apos;string&apos;]),
+    }),
+  ]),
+);
+/**
+ * @ignore
+ */
+const GetClusterNodes_015 = jsonRpcResult(
+  struct.list([
+    struct({
+      id: &apos;string&apos;,
+      gossip: &apos;string&apos;,
+      tpu: struct.union([&apos;null&apos;, &apos;string&apos;]),
+      rpc: struct.union([&apos;null&apos;, &apos;string&apos;]),
+    }),
+  ]),
+);
+
+/**
+ * Expected JSON RPC response for the &quot;getVoteAccounts&quot; message
+ */
+const GetVoteAccounts = jsonRpcResult(
+  struct({
+    current: struct.list([
+      struct({
+        votePubkey: &apos;string&apos;,
+        nodePubkey: &apos;string&apos;,
+        activatedStake: &apos;number&apos;,
+        epochVoteAccount: &apos;boolean&apos;,
+        epochCredits: struct.list([
+          struct.tuple([&apos;number&apos;, &apos;number&apos;, &apos;number&apos;]),
+        ]),
+        commission: &apos;number&apos;,
+        lastVote: &apos;number&apos;,
+        rootSlot: &apos;number?&apos;,
+      }),
+    ]),
+    delinquent: struct.list([
+      struct({
+        votePubkey: &apos;string&apos;,
+        nodePubkey: &apos;string&apos;,
+        activatedStake: &apos;number&apos;,
+        epochVoteAccount: &apos;boolean&apos;,
+        epochCredits: struct.list([
+          struct.tuple([&apos;number&apos;, &apos;number&apos;, &apos;number&apos;]),
+        ]),
+        commission: &apos;number&apos;,
+        lastVote: &apos;number&apos;,
+        rootSlot: &apos;number?&apos;,
+      }),
+    ]),
+  }),
+);
+
+const SignatureStatusResult = struct.union([
+  &apos;null&apos;,
+  struct.union([struct({Ok: &apos;null&apos;}), struct({Err: &apos;object&apos;})]),
+]);
+
+/**
+ * Expected JSON RPC response for the &quot;getSignatureStatus&quot; message
+ */
+const GetSignatureStatusRpcResult = jsonRpcResult(SignatureStatusResult);
+
+/**
+ * Expected JSON RPC response for the &quot;getTransactionCount&quot; message
+ */
+const GetTransactionCountRpcResult = jsonRpcResult(&apos;number&apos;);
+
+/**
+ * Expected JSON RPC response for the &quot;getTotalSupply&quot; message
+ */
+const GetTotalSupplyRpcResult = jsonRpcResult(&apos;number&apos;);
+
+/**
+ * Expected JSON RPC response for the &quot;getMinimumBalanceForRentExemption&quot; message
+ */
+const GetMinimumBalanceForRentExemptionRpcResult = jsonRpcResult(&apos;number&apos;);
+
+/**
+ * Expected JSON RPC response for the &quot;getConfirmedBlock&quot; message
+ */
+export const GetConfirmedBlockRpcResult = jsonRpcResult(
+  struct({
+    blockhash: struct.list([&apos;number&apos;]),
+    previousBlockhash: struct.list([&apos;number&apos;]),
+    parentSlot: &apos;number&apos;,
+    transactions: struct.list([
+      struct.tuple([
+        struct({
+          signatures: struct.list([struct.list([&apos;number&apos;])]),
+          message: struct({
+            accountKeys: struct.list([struct.list([&apos;number&apos;])]),
+            header: struct({
+              numRequiredSignatures: &apos;number&apos;,
+              numReadonlySignedAccounts: &apos;number&apos;,
+              numReadonlyUnsignedAccounts: &apos;number&apos;,
+            }),
+            instructions: struct.list([
+              struct.union([
+                struct.list([&apos;number&apos;]),
+                struct({
+                  accounts: struct.list([
+                    struct.union([struct.list([&apos;number&apos;]), &apos;number&apos;]),
+                  ]),
+                  data: struct.list([
+                    struct.union([struct.list([&apos;number&apos;]), &apos;number&apos;]),
+                  ]),
+                  programIdIndex: &apos;number&apos;,
+                }),
+              ]),
+            ]),
+            recentBlockhash: struct.list([&apos;number&apos;]),
+          }),
+        }),
+        struct.union([
+          &apos;null&apos;,
+          struct({
+            status: SignatureStatusResult,
+            fee: &apos;number&apos;,
+          }),
+        ]),
+      ]),
+    ]),
+  }),
+);
+
+/**
+ * Expected JSON RPC response for the &quot;getRecentBlockhash&quot; message
+ */
+const GetRecentBlockhashAndContextRpcResult = jsonRpcResultAndContext([
+  &apos;string&apos;,
+  struct({
+    burnPercent: &apos;number&apos;,
+    lamportsPerSignature: &apos;number&apos;,
+    maxLamportsPerSignature: &apos;number&apos;,
+    minLamportsPerSignature: &apos;number&apos;,
+    targetLamportsPerSignature: &apos;number&apos;,
+    targetSignaturesPerSlot: &apos;number&apos;,
+  }),
+]);
+
+/**
+ * @ignore
+ */
+const GetRecentBlockhash_016 = jsonRpcResult([
+  &apos;string&apos;,
+  struct({
+    lamportsPerSignature: &apos;number&apos;,
+    maxLamportsPerSignature: &apos;number&apos;,
+    minLamportsPerSignature: &apos;number&apos;,
+    targetLamportsPerSignature: &apos;number&apos;,
+    targetSignaturesPerSlot: &apos;number&apos;,
+  }),
+]);
+
+/**
+ * Expected JSON RPC response for the &quot;requestAirdrop&quot; message
+ */
+const RequestAirdropRpcResult = jsonRpcResult(&apos;string&apos;);
+
+/**
+ * Expected JSON RPC response for the &quot;sendTransaction&quot; message
+ */
+const SendTransactionRpcResult = jsonRpcResult(&apos;string&apos;);
+
+/**
+ * Information describing an account
+ *
+ * @typedef {Object} AccountInfo
+ * @property {number} lamports Number of lamports assigned to the account
+ * @property {PublicKey} owner Identifier of the program that owns the account
+ * @property {?Buffer} data Optional data assigned to the account
+ * @property {boolean} executable `true` if this account&apos;s data contains a loaded program
+ */
+type AccountInfo = {
+  executable: boolean,
+  owner: PublicKey,
+  lamports: number,
+  data: Buffer,
+};
+
+/**
+ * Account information identified by pubkey
+ *
+ * @typedef {Object} KeyedAccountInfo
+ * @property {PublicKey} accountId
+ * @property {AccountInfo} accountInfo
+ */
+type KeyedAccountInfo = {
+  accountId: PublicKey,
+  accountInfo: AccountInfo,
+};
+
+/**
+ * Callback function for account change notifications
+ */
+export type AccountChangeCallback = (accountInfo: AccountInfo) =&gt; void;
+
+/**
+ * @private
+ */
+type AccountSubscriptionInfo = {
+  publicKey: string, // PublicKey of the account as a base 58 string
+  callback: AccountChangeCallback,
+  subscriptionId: null | number, // null when there&apos;s no current server subscription id
+};
+
+/**
+ * Callback function for program account change notifications
+ */
+export type ProgramAccountChangeCallback = (
+  keyedAccountInfo: KeyedAccountInfo,
+) =&gt; void;
+
+/**
+ * @private
+ */
+type ProgramAccountSubscriptionInfo = {
+  programId: string, // PublicKey of the program as a base 58 string
+  callback: ProgramAccountChangeCallback,
+  subscriptionId: null | number, // null when there&apos;s no current server subscription id
+};
+
+/**
+ * @private
+ */
+type SlotSubscriptionInfo = {
+  callback: SlotChangeCallback,
+  subscriptionId: null | number, // null when there&apos;s no current server subscription id
+};
+
+/**
+ * Callback function for slot change notifications
+ */
+export type SlotChangeCallback = (slotInfo: SlotInfo) =&gt; void;
+
+/**
+ * Signature status: Success
+ *
+ * @typedef {Object} SignatureSuccess
+ */
+export type SignatureSuccess = {|
+  Ok: null,
+|};
+
+/**
+ * Signature status: TransactionError
+ *
+ * @typedef {Object} TransactionError
+ */
+export type TransactionError = {|
+  Err: Object,
+|};
+
+/**
+ * @ignore
+ */
+type BlockhashAndFeeCalculator = [Blockhash, FeeCalculator]; // This type exists to workaround an esdoc parse error
+
+/**
+ * @ignore
+ */
+type PublicKeyAndAccount = [PublicKey, AccountInfo]; // This type exists to workaround an esdoc parse error
+
+/**
+ * A connection to a fullnode JSON RPC endpoint
+ */
+export class Connection {
+  _rpcRequest: RpcRequest;
+  _rpcWebSocket: RpcWebSocketClient;
+  _rpcWebSocketConnected: boolean = false;
+
+  _commitment: ?Commitment;
+  _blockhashInfo: {
+    recentBlockhash: Blockhash | null,
+    seconds: number,
+    transactionSignatures: Array&lt;string&gt;,
+  };
+  _disableBlockhashCaching: boolean = false;
+  _accountChangeSubscriptions: {[number]: AccountSubscriptionInfo} = {};
+  _accountChangeSubscriptionCounter: number = 0;
+  _programAccountChangeSubscriptions: {
+    [number]: ProgramAccountSubscriptionInfo,
+  } = {};
+  _programAccountChangeSubscriptionCounter: number = 0;
+  _slotSubscriptions: {
+    [number]: SlotSubscriptionInfo,
+  } = {};
+  _slotSubscriptionCounter: number = 0;
+
+  /**
+   * Establish a JSON RPC connection
+   *
+   * @param endpoint URL to the fullnode JSON RPC endpoint
+   * @param commitment optional default commitment level
+   */
+  constructor(endpoint: string, commitment: ?Commitment) {
+    let url = urlParse(endpoint);
+
+    this._rpcRequest = createRpcRequest(url.href);
+    this._commitment = commitment;
+    this._blockhashInfo = {
+      recentBlockhash: null,
+      seconds: -1,
+      transactionSignatures: [],
+    };
+
+    url.protocol = url.protocol === &apos;https:&apos; ? &apos;wss:&apos; : &apos;ws:&apos;;
+    url.host = &apos;&apos;;
+    url.port = String(Number(url.port) + 1);
+    if (url.port === &apos;1&apos;) {
+      url.port = url.protocol === &apos;wss:&apos; ? &apos;8901&apos; : &apos;8900&apos;;
+    }
+    this._rpcWebSocket = new RpcWebSocketClient(urlFormat(url), {
+      autoconnect: false,
+      max_reconnects: Infinity,
+    });
+    this._rpcWebSocket.on(&apos;open&apos;, this._wsOnOpen.bind(this));
+    this._rpcWebSocket.on(&apos;error&apos;, this._wsOnError.bind(this));
+    this._rpcWebSocket.on(&apos;close&apos;, this._wsOnClose.bind(this));
+    this._rpcWebSocket.on(
+      &apos;accountNotification&apos;,
+      this._wsOnAccountNotification.bind(this),
+    );
+    this._rpcWebSocket.on(
+      &apos;programNotification&apos;,
+      this._wsOnProgramAccountNotification.bind(this),
+    );
+    this._rpcWebSocket.on(
+      &apos;slotNotification&apos;,
+      this._wsOnSlotNotification.bind(this),
+    );
+  }
+
+  /**
+   * Fetch the balance for the specified public key
+   */
+  async getBalanceAndContext(
+    publicKey: PublicKey,
+    commitment: ?Commitment,
+  ): Promise&lt;RpcResponseAndContext&lt;number&gt;&gt; {
+    const args = this._argsWithCommitment([publicKey.toBase58()], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getBalance&apos;, args);
+    const res = GetBalanceAndContextRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+
+    const isV021 =
+      typeof res.result.context !== &apos;undefined&apos; &amp;&amp;
+      typeof res.result.value !== &apos;undefined&apos;;
+
+    if (isV021) {
+      return res.result;
+    } else {
+      return {
+        context: {
+          slot: NaN,
+        },
+        value: res.result,
+      };
+    }
+  }
+  async getBalance(
+    publicKey: PublicKey,
+    commitment: ?Commitment,
+  ): Promise&lt;number&gt; {
+    return await this.getBalanceAndContext(publicKey, commitment)
+      .then(x =&gt; x.value)
+      .catch(e =&gt; {
+        throw e;
+      });
+  }
+
+  /**
+   * Fetch all the account info for the specified public key
+   */
+  async getAccountInfoAndContext(
+    publicKey: PublicKey,
+    commitment: ?Commitment,
+  ): Promise&lt;RpcResponseAndContext&lt;AccountInfo&gt;&gt; {
+    const args = this._argsWithCommitment([publicKey.toBase58()], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getAccountInfo&apos;, args);
+    const res = GetAccountInfoAndContextRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+
+    const isV021 =
+      typeof res.result.context !== &apos;undefined&apos; &amp;&amp;
+      typeof res.result.value !== &apos;undefined&apos;;
+
+    const slot = isV021 ? res.result.context.slot : NaN;
+    const resultValue = isV021 ? res.result.value : res.result;
+
+    if (!resultValue) {
+      throw new Error(&apos;Invalid request&apos;);
+    }
+
+    const {executable, owner, lamports, data} = resultValue;
+    const value = {
+      executable,
+      owner: new PublicKey(owner),
+      lamports,
+      data: Buffer.from(data),
+    };
+
+    return {
+      context: {
+        slot,
+      },
+      value,
+    };
+  }
+  async getAccountInfo(
+    publicKey: PublicKey,
+    commitment: ?Commitment,
+  ): Promise&lt;AccountInfo&gt; {
+    return await this.getAccountInfoAndContext(publicKey, commitment)
+      .then(x =&gt; x.value)
+      .catch(e =&gt; {
+        throw e;
+      });
+  }
+
+  /**
+   * Fetch all the accounts owned by the specified program id
+   */
+  async getProgramAccounts(
+    programId: PublicKey,
+    commitment: ?Commitment,
+  ): Promise&lt;Array&lt;PublicKeyAndAccount&gt;&gt; {
+    const args = this._argsWithCommitment([programId.toBase58()], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getProgramAccounts&apos;, args);
+    const res = GetProgramAccountsRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+
+    const {result} = res;
+    assert(typeof result !== &apos;undefined&apos;);
+
+    return result.map(result =&gt; {
+      return [
+        result[0],
+        {
+          executable: result[1].executable,
+          owner: new PublicKey(result[1].owner),
+          lamports: result[1].lamports,
+          data: Buffer.from(result[1].data),
+        },
+      ];
+    });
+  }
+
+  /**
+   * Confirm the transaction identified by the specified signature
+   */
+  async confirmTransactionAndContext(
+    signature: TransactionSignature,
+    commitment: ?Commitment,
+  ): Promise&lt;RpcResponseAndContext&lt;boolean&gt;&gt; {
+    const args = this._argsWithCommitment([signature], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;confirmTransaction&apos;, args);
+    const res = ConfirmTransactionAndContextRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+
+    const isV021 =
+      typeof res.result.context !== &apos;undefined&apos; &amp;&amp;
+      typeof res.result.value !== &apos;undefined&apos;;
+
+    if (isV021) {
+      return res.result;
+    } else {
+      return {
+        context: {
+          slot: NaN,
+        },
+        value: res.result,
+      };
+    }
+  }
+  async confirmTransaction(
+    signature: TransactionSignature,
+    commitment: ?Commitment,
+  ): Promise&lt;boolean&gt; {
+    return await this.confirmTransactionAndContext(signature, commitment)
+      .then(x =&gt; x.value)
+      .catch(e =&gt; {
+        throw e;
+      });
+  }
+
+  /**
+   * Return the list of nodes that are currently participating in the cluster
+   */
+  async getClusterNodes(): Promise&lt;Array&lt;ContactInfo&gt;&gt; {
+    const unsafeRes = await this._rpcRequest(&apos;getClusterNodes&apos;, []);
+
+    // Legacy v0.15 response.  TODO: Remove in August 2019
+    try {
+      const res_015 = GetClusterNodes_015(unsafeRes);
+      if (res_015.error) {
+        console.log(&apos;no&apos;, res_015.error);
+        throw new Error(res_015.error.message);
+      }
+      return res_015.result.map(node =&gt; {
+        node.pubkey = node.id;
+        node.id = undefined;
+        return node;
+      });
+    } catch (e) {
+      // Not legacy format
+    }
+    // End Legacy v0.15 response
+
+    const res = GetClusterNodes(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Return the list of nodes that are currently participating in the cluster
+   */
+  async getVoteAccounts(commitment: ?Commitment): Promise&lt;VoteAccountStatus&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getVoteAccounts&apos;, args);
+    const res = GetVoteAccounts(unsafeRes);
+    //const res = unsafeRes;
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Fetch the current slot that the node is processing
+   */
+  async getSlot(commitment: ?Commitment): Promise&lt;number&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getSlot&apos;, args);
+    const res = GetSlot(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Fetch the current slot leader of the cluster
+   */
+  async getSlotLeader(commitment: ?Commitment): Promise&lt;string&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getSlotLeader&apos;, args);
+    const res = GetSlotLeader(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Fetch the current transaction count of the cluster
+   */
+  async getSignatureStatus(
+    signature: TransactionSignature,
+    commitment: ?Commitment,
+  ): Promise&lt;SignatureSuccess | TransactionError | null&gt; {
+    const args = this._argsWithCommitment([signature], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getSignatureStatus&apos;, args);
+    const res = GetSignatureStatusRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Fetch the current transaction count of the cluster
+   */
+  async getTransactionCount(commitment: ?Commitment): Promise&lt;number&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getTransactionCount&apos;, args);
+    const res = GetTransactionCountRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return Number(res.result);
+  }
+
+  /**
+   * Fetch the current total currency supply of the cluster in lamports
+   */
+  async getTotalSupply(commitment: ?Commitment): Promise&lt;number&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getTotalSupply&apos;, args);
+    const res = GetTotalSupplyRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return Number(res.result);
+  }
+
+  /**
+   * Fetch the cluster Inflation parameters
+   */
+  async getInflation(commitment: ?Commitment): Promise&lt;GetInflationRpcResult&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getInflation&apos;, args);
+    const res = GetInflationRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return GetInflationResult(res.result);
+  }
+
+  /**
+   * Fetch the Epoch Info parameters
+   */
+  async getEpochInfo(commitment: ?Commitment): Promise&lt;GetEpochInfoRpcResult&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getEpochInfo&apos;, args);
+    const res = GetEpochInfoRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return GetEpochInfoResult(res.result);
+  }
+
+  /**
+   * Fetch the Epoch Schedule parameters
+   */
+  async getEpochSchedule(): Promise&lt;GetEpochScheduleRpcResult&gt; {
+    const unsafeRes = await this._rpcRequest(&apos;getEpochSchedule&apos;, []);
+    const res = GetEpochScheduleRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return GetEpochScheduleResult(res.result);
+  }
+
+  /**
+   * Fetch the minimum balance needed to exempt an account of `dataLength`
+   * size from rent
+   */
+  async getMinimumBalanceForRentExemption(
+    dataLength: number,
+    commitment: ?Commitment,
+  ): Promise&lt;number&gt; {
+    const args = this._argsWithCommitment([dataLength], commitment);
+    const unsafeRes = await this._rpcRequest(
+      &apos;getMinimumBalanceForRentExemption&apos;,
+      args,
+    );
+    const res = GetMinimumBalanceForRentExemptionRpcResult(unsafeRes);
+    if (res.error) {
+      console.warn(&apos;Unable to fetch minimum balance for rent exemption&apos;);
+      return 0;
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return Number(res.result);
+  }
+
+  /**
+   * Fetch a recent blockhash from the cluster
+   */
+  async getRecentBlockhashAndContext(
+    commitment: ?Commitment,
+  ): Promise&lt;RpcResponseAndContext&lt;BlockhashAndFeeCalculator&gt;&gt; {
+    const args = this._argsWithCommitment([], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;getRecentBlockhash&apos;, args);
+
+    // Legacy v0.16 response.  TODO: Remove in September 2019
+    try {
+      const res_016 = GetRecentBlockhash_016(unsafeRes);
+      if (res_016.error) {
+        throw new Error(res_016.error.message);
+      }
+      const [blockhash, feeCalculator] = res_016.result;
+      feeCalculator.burnPercent = 0;
+
+      return {
+        context: {
+          slot: NaN,
+        },
+        value: [blockhash, feeCalculator],
+      };
+    } catch (e) {
+      // Not legacy format
+    }
+    // End Legacy v0.16 response
+
+    const res = GetRecentBlockhashAndContextRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+
+    const isV021 =
+      typeof res.result.context !== &apos;undefined&apos; &amp;&amp;
+      typeof res.result.value !== &apos;undefined&apos;;
+
+    if (isV021) {
+      return res.result;
+    } else {
+      return {
+        context: {
+          slot: NaN,
+        },
+        value: res.result,
+      };
+    }
+  }
+  async getRecentBlockhash(
+    commitment: ?Commitment,
+  ): Promise&lt;BlockhashAndFeeCalculator&gt; {
+    return await this.getRecentBlockhashAndContext(commitment)
+      .then(x =&gt; x.value)
+      .catch(e =&gt; {
+        throw e;
+      });
+  }
+
+  /**
+   * Fetch the node version
+   */
+  async getVersion(): Promise&lt;Version&gt; {
+    const unsafeRes = await this._rpcRequest(&apos;getVersion&apos;, []);
+    const res = GetVersionRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Fetch a list of Transactions and transaction statuses from the cluster
+   * for a confirmed block
+   */
+  async getConfirmedBlock(slot: number): Promise&lt;ConfirmedBlock&gt; {
+    const unsafeRes = await this._rpcRequest(&apos;getConfirmedBlock&apos;, [slot]);
+    const result = GetConfirmedBlockRpcResult(unsafeRes);
+    if (result.error) {
+      throw new Error(result.error.message);
+    }
+    assert(typeof result.result !== &apos;undefined&apos;);
+    return {
+      blockhash: new PublicKey(result.result.blockhash).toString(),
+      previousBlockhash: new PublicKey(
+        result.result.previousBlockhash,
+      ).toString(),
+      parentSlot: result.result.parentSlot,
+      transactions: result.result.transactions.map(result =&gt; {
+        return [Transaction.fromRpcResult(result[0]), result[1]];
+      }),
+    };
+  }
+
+  /**
+   * Request an allocation of lamports to the specified account
+   */
+  async requestAirdrop(
+    to: PublicKey,
+    amount: number,
+    commitment: ?Commitment,
+  ): Promise&lt;TransactionSignature&gt; {
+    const args = this._argsWithCommitment([to.toBase58(), amount], commitment);
+    const unsafeRes = await this._rpcRequest(&apos;requestAirdrop&apos;, args);
+    const res = RequestAirdropRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Sign and send a transaction
+   */
+  async sendTransaction(
+    transaction: Transaction,
+    ...signers: Array&lt;Account&gt;
+  ): Promise&lt;TransactionSignature&gt; {
+    for (;;) {
+      // Attempt to use a recent blockhash for up to 30 seconds
+      const seconds = new Date().getSeconds();
+      if (
+        this._blockhashInfo.recentBlockhash != null &amp;&amp;
+        this._blockhashInfo.seconds &lt; seconds + 30
+      ) {
+        transaction.recentBlockhash = this._blockhashInfo.recentBlockhash;
+        transaction.sign(...signers);
+        if (!transaction.signature) {
+          throw new Error(&apos;!signature&apos;); // should never happen
+        }
+
+        // If the signature of this transaction has not been seen before with the
+        // current recentBlockhash, all done.
+        const signature = transaction.signature.toString();
+        if (!this._blockhashInfo.transactionSignatures.includes(signature)) {
+          this._blockhashInfo.transactionSignatures.push(signature);
+          if (this._disableBlockhashCaching) {
+            this._blockhashInfo.seconds = -1;
+          }
+          break;
+        }
+      }
+
+      // Fetch a new blockhash
+      let attempts = 0;
+      const startTime = Date.now();
+      for (;;) {
+        const [
+          recentBlockhash,
+          //feeCalculator,
+        ] = await this.getRecentBlockhash();
+
+        if (this._blockhashInfo.recentBlockhash != recentBlockhash) {
+          this._blockhashInfo = {
+            recentBlockhash,
+            seconds: new Date().getSeconds(),
+            transactionSignatures: [],
+          };
+          break;
+        }
+        if (attempts === 50) {
+          throw new Error(
+            `Unable to obtain a new blockhash after ${Date.now() -
+              startTime}ms`,
+          );
+        }
+
+        // Sleep for approximately half a slot
+        await sleep((500 * DEFAULT_TICKS_PER_SLOT) / NUM_TICKS_PER_SECOND);
+
+        ++attempts;
+      }
+    }
+
+    const wireTransaction = transaction.serialize();
+    return await this.sendRawTransaction(wireTransaction);
+  }
+
+  /**
+   * @private
+   */
+  async validatorExit(): Promise&lt;boolean&gt; {
+    const unsafeRes = await this._rpcRequest(&apos;validatorExit&apos;, []);
+    const res = jsonRpcResult(&apos;boolean&apos;)(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    return res.result;
+  }
+
+  /**
+   * Send a transaction that has already been signed and serialized into the
+   * wire format
+   */
+  async sendRawTransaction(
+    rawTransaction: Buffer,
+  ): Promise&lt;TransactionSignature&gt; {
+    const unsafeRes = await this._rpcRequest(&apos;sendTransaction&apos;, [
+      [...rawTransaction],
+    ]);
+    const res = SendTransactionRpcResult(unsafeRes);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    assert(res.result);
+    return res.result;
+  }
+
+  /**
+   * @private
+   */
+  _wsOnOpen() {
+    this._rpcWebSocketConnected = true;
+    this._updateSubscriptions();
+  }
+
+  /**
+   * @private
+   */
+  _wsOnError(err: Error) {
+    console.log(&apos;ws error:&apos;, err.message);
+  }
+
+  /**
+   * @private
+   */
+  _wsOnClose(code: number, message: string) {
+    // 1000 means _rpcWebSocket.close() was called explicitly
+    if (code !== 1000) {
+      console.log(&apos;ws close:&apos;, code, message);
+    } else {
+      // Only after an explicit close do we need to explicitly connect again
+      this._rpcWebSocketConnected = false;
+    }
+  }
+
+  /**
+   * @private
+   */
+  async _updateSubscriptions() {
+    const accountKeys = Object.keys(this._accountChangeSubscriptions).map(
+      Number,
+    );
+    const programKeys = Object.keys(
+      this._programAccountChangeSubscriptions,
+    ).map(Number);
+    const slotKeys = Object.keys(this._slotSubscriptions).map(Number);
+    if (
+      accountKeys.length === 0 &amp;&amp;
+      programKeys.length === 0 &amp;&amp;
+      slotKeys.length === 0
+    ) {
+      this._rpcWebSocket.close();
+      return;
+    }
+
+    if (!this._rpcWebSocketConnected) {
+      for (let id of accountKeys) {
+        this._accountChangeSubscriptions[id].subscriptionId = null;
+      }
+      for (let id of programKeys) {
+        this._programAccountChangeSubscriptions[id].subscriptionId = null;
+      }
+      for (let id of slotKeys) {
+        this._slotSubscriptions[id].subscriptionId = null;
+      }
+      this._rpcWebSocket.connect();
+      return;
+    }
+
+    for (let id of accountKeys) {
+      const {subscriptionId, publicKey} = this._accountChangeSubscriptions[id];
+      if (subscriptionId === null) {
+        try {
+          this._accountChangeSubscriptions[
+            id
+          ].subscriptionId = await this._rpcWebSocket.call(&apos;accountSubscribe&apos;, [
+            publicKey,
+          ]);
+        } catch (err) {
+          console.log(
+            `accountSubscribe error for ${publicKey}: ${err.message}`,
+          );
+        }
+      }
+    }
+    for (let id of programKeys) {
+      const {
+        subscriptionId,
+        programId,
+      } = this._programAccountChangeSubscriptions[id];
+      if (subscriptionId === null) {
+        try {
+          this._programAccountChangeSubscriptions[
+            id
+          ].subscriptionId = await this._rpcWebSocket.call(&apos;programSubscribe&apos;, [
+            programId,
+          ]);
+        } catch (err) {
+          console.log(
+            `programSubscribe error for ${programId}: ${err.message}`,
+          );
+        }
+      }
+    }
+    for (let id of slotKeys) {
+      const {subscriptionId} = this._slotSubscriptions[id];
+      if (subscriptionId === null) {
+        try {
+          this._slotSubscriptions[
+            id
+          ].subscriptionId = await this._rpcWebSocket.call(&apos;slotSubscribe&apos;, []);
+        } catch (err) {
+          console.log(`slotSubscribe error: ${err.message}`);
+        }
+      }
+    }
+  }
+
+  /**
+   * @private
+   */
+  _wsOnAccountNotification(notification: Object) {
+    const res = AccountNotificationResult(notification);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+
+    const keys = Object.keys(this._accountChangeSubscriptions).map(Number);
+    for (let id of keys) {
+      const sub = this._accountChangeSubscriptions[id];
+      if (sub.subscriptionId === res.subscription) {
+        const {result} = res;
+        assert(typeof result !== &apos;undefined&apos;);
+
+        sub.callback({
+          executable: result.executable,
+          owner: new PublicKey(result.owner),
+          lamports: result.lamports,
+          data: Buffer.from(result.data),
+        });
+        return true;
+      }
+    }
+  }
+
+  /**
+   * Register a callback to be invoked whenever the specified account changes
+   *
+   * @param publickey Public key of the account to monitor
+   * @param callback Function to invoke whenever the account is changed
+   * @return subscription id
+   */
+  onAccountChange(
+    publicKey: PublicKey,
+    callback: AccountChangeCallback,
+  ): number {
+    const id = ++this._accountChangeSubscriptionCounter;
+    this._accountChangeSubscriptions[id] = {
+      publicKey: publicKey.toBase58(),
+      callback,
+      subscriptionId: null,
+    };
+    this._updateSubscriptions();
+    return id;
+  }
+
+  /**
+   * Deregister an account notification callback
+   *
+   * @param id subscription id to deregister
+   */
+  async removeAccountChangeListener(id: number): Promise&lt;void&gt; {
+    if (this._accountChangeSubscriptions[id]) {
+      const {subscriptionId} = this._accountChangeSubscriptions[id];
+      delete this._accountChangeSubscriptions[id];
+      if (subscriptionId !== null) {
+        try {
+          await this._rpcWebSocket.call(&apos;accountUnsubscribe&apos;, [subscriptionId]);
+        } catch (err) {
+          console.log(&apos;accountUnsubscribe error:&apos;, err.message);
+        }
+      }
+      this._updateSubscriptions();
+    } else {
+      throw new Error(`Unknown account change id: ${id}`);
+    }
+  }
+
+  /**
+   * @private
+   */
+  _wsOnProgramAccountNotification(notification: Object) {
+    const res = ProgramAccountNotificationResult(notification);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+
+    const keys = Object.keys(this._programAccountChangeSubscriptions).map(
+      Number,
+    );
+    for (let id of keys) {
+      const sub = this._programAccountChangeSubscriptions[id];
+      if (sub.subscriptionId === res.subscription) {
+        const {result} = res;
+        assert(typeof result !== &apos;undefined&apos;);
+
+        sub.callback({
+          accountId: result[0],
+          accountInfo: {
+            executable: result[1].executable,
+            owner: new PublicKey(result[1].owner),
+            lamports: result[1].lamports,
+            data: Buffer.from(result[1].data),
+          },
+        });
+        return true;
+      }
+    }
+  }
+
+  /**
+   * Register a callback to be invoked whenever accounts owned by the
+   * specified program change
+   *
+   * @param programId Public key of the program to monitor
+   * @param callback Function to invoke whenever the account is changed
+   * @return subscription id
+   */
+  onProgramAccountChange(
+    programId: PublicKey,
+    callback: ProgramAccountChangeCallback,
+  ): number {
+    const id = ++this._programAccountChangeSubscriptionCounter;
+    this._programAccountChangeSubscriptions[id] = {
+      programId: programId.toBase58(),
+      callback,
+      subscriptionId: null,
+    };
+    this._updateSubscriptions();
+    return id;
+  }
+
+  /**
+   * Deregister an account notification callback
+   *
+   * @param id subscription id to deregister
+   */
+  async removeProgramAccountChangeListener(id: number): Promise&lt;void&gt; {
+    if (this._programAccountChangeSubscriptions[id]) {
+      const {subscriptionId} = this._programAccountChangeSubscriptions[id];
+      delete this._programAccountChangeSubscriptions[id];
+      if (subscriptionId !== null) {
+        try {
+          await this._rpcWebSocket.call(&apos;programUnsubscribe&apos;, [subscriptionId]);
+        } catch (err) {
+          console.log(&apos;programUnsubscribe error:&apos;, err.message);
+        }
+      }
+      this._updateSubscriptions();
+    } else {
+      throw new Error(`Unknown account change id: ${id}`);
+    }
+  }
+
+  /**
+   * @private
+   */
+  _wsOnSlotNotification(notification: Object) {
+    const res = SlotNotificationResult(notification);
+    if (res.error) {
+      throw new Error(res.error.message);
+    }
+    assert(typeof res.result !== &apos;undefined&apos;);
+    const {parent, slot, root} = res.result;
+
+    const keys = Object.keys(this._slotSubscriptions).map(Number);
+    for (let id of keys) {
+      const sub = this._slotSubscriptions[id];
+      if (sub.subscriptionId === res.subscription) {
+        sub.callback({
+          parent,
+          slot,
+          root,
+        });
+        return true;
+      }
+    }
+  }
+
+  /**
+   * Register a callback to be invoked upon slot changes
+   *
+   * @param callback Function to invoke whenever the slot changes
+   * @return subscription id
+   */
+  onSlotChange(callback: SlotChangeCallback): number {
+    const id = ++this._slotSubscriptionCounter;
+    this._slotSubscriptions[id] = {
+      callback,
+      subscriptionId: id,
+    };
+    this._updateSubscriptions();
+    return id;
+  }
+
+  /**
+   * Deregister a slot notification callback
+   *
+   * @param id subscription id to deregister
+   */
+  async removeSlotChangeListener(id: number): Promise&lt;void&gt; {
+    if (this._slotSubscriptions[id]) {
+      const {subscriptionId} = this._slotSubscriptions[id];
+      delete this._slotSubscriptions[id];
+      if (subscriptionId !== null) {
+        try {
+          await this._rpcWebSocket.call(&apos;slotUnsubscribe&apos;, [subscriptionId]);
+        } catch (err) {
+          console.log(&apos;slotUnsubscribe error:&apos;, err.message);
+        }
+      }
+      this._updateSubscriptions();
+    } else {
+      throw new Error(`Unknown slot change id: ${id}`);
+    }
+  }
+
+  _argsWithCommitment(args: Array&lt;any&gt;, override: ?Commitment): Array&lt;any&gt; {
+    const commitment = override || this._commitment;
+    if (commitment) {
+      args.push({commitment});
+    }
+    return args;
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
